@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aksi</title>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.4
+  };
+
+  // IMAGE ANIMATION
+
+  let revealCallback = (entries) => {
+    entries.forEach((entry) => {
+      let container = entry.target;
+
+      if (entry.isIntersecting) {
+        console.log(container);
+        container.classList.add("animating");
+        return;
+      }
+
+      if (entry.boundingClientRect.top > 0) {
+        container.classList.remove("animating");
+      }
+    });
+  };
+
+  let revealObserver = new IntersectionObserver(revealCallback, options);
+
+  document.querySelectorAll(".reveal").forEach((reveal) => {
+    revealObserver.observe(reveal);
+  });
+
+  // TEXT ANIMATION
+
+  let fadeupCallback = (entries) => {
+    entries.forEach((entry) => {
+      let container = entry.target;
+      container.classList.add("not-fading-up");
+
+      if (entry.isIntersecting) {
+        container.classList.add("fading-up");
+        return;
+      }
+
+      if (entry.boundingClientRect.top > 0) {
+        container.classList.remove("fading-up");
+      }
+    });
+  };
+
+  let fadeupObserver = new IntersectionObserver(fadeupCallback, options);
+
+  document.querySelectorAll(".fadeup").forEach((fadeup) => {
+    fadeupObserver.observe(fadeup);
+  });
+});
+
+  </script>
+  <style type="text/css">
+    .container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.credit {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-family: Termina, sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+}
+
+.credit a {
+  color: #1a292c;
+  text-transform: lowercase;
+}
+
+.container:nth-child(2) {
+  background: #3c564f;
+}
+.container:nth-child(1) {
+  background: #b69187;
+}
+.container:nth-child(4) {
+  background: #bcb8ad;
+}
+.container:nth-child(3) {
+  background: #b6916d;
+}
+
+img {
+  height: 100%;
+  width: auto;
+  max-width: 75vw;
+  object-fit: contain;
+}
+
+h2 {
+  font-family: Termina, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  -webkit-text-stroke: 2px white;
+  text-stroke: 2px white;
+  color: transparent;
+  font-size: clamp(3rem, 10vw, 6rem);
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  width: 90%;
+  height: 50%;
+  z-index: 99;
+  display: grid;
+  place-items: center;
+}
+
+body:not(.no-js) .image-wrap {
+  transition: 1s ease-out;
+  transition-delay: 0.2s;
+  position: relative;
+  width: auto;
+  height: 80vh;
+  overflow: hidden;
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  visibility: hidden;
+}
+
+body:not(.no-js) .image-wrap img {
+  transform: scale(1.3);
+  transition: 2s ease-out;
+}
+
+body:not(.no-js) .animating .image-wrap {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  visibility: visible;
+  transform: skewY(0);
+}
+
+body:not(.no-js) .animating img {
+  transform: scale(1);
+  transition: 4s ease-out;
+}
+
+body:not(.no-js) .fadeup {
+  opacity: 0;
+  transition: 0.4s ease-out;
+  transform: translateY(40px);
+}
+
+body:not(.no-js) .fading-up {
+  opacity: 1;
+  transition: 1s ease-out;
+  transform: translateY(0px);
+  transition-delay: 0.7s;
+}
+
+  </style>
+</head>
+<body>
+  <div class='container'>
+  <h2 class="fadeup">Mherrie</h2>
+  <div class='reveal'>
+    <div class="image-wrap">
+      <img src='https://scontent.fmnl25-4.fna.fbcdn.net/v/t1.15752-9/381409096_1007704660464479_4972989881360577270_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeFBvVhdE3JlNPaMXwCcDmg_yhfc7B7pdxvKF9zsHul3G82qC_YBbQbOwKRNBv4mKLOBV0Tz580ZhO1xep7jQzij&_nc_ohc=iys3UtMkXwwAX-VpDHf&_nc_ht=scontent.fmnl25-4.fna&oh=03_AdQFEAVrWaubCp_a-Vj9micdTwCdR7GQ5QYIDjR9NTJ1mA&oe=6535F82E'>
+    </div>
+  </div>
+</div>
+<div class='container'>
+  <h2 class="fadeup">Edgilene</h2>
+  <div class='reveal'>
+    <div class="image-wrap">
+      <img src='https://scontent.fmnl25-4.fna.fbcdn.net/v/t1.15752-9/379880841_3786321741686604_8234067328728007165_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeEoKZ_qqvRPq2arNyIxu3syzYkW0j7ZCNPNiRbSPtkI001iFm_tYENDlKJxgkFx54ARyeBf-wiEmuNGuzR5sNuz&_nc_ohc=9LLX8Ir9HgUAX9OvtfY&_nc_ht=scontent.fmnl25-4.fna&oh=03_AdQSXTQ6_a3PpJdPUgrRZ9VxsodPpKKNNzSIhBP0pkPgQw&oe=6535EA9E'>
+    </div>
+  </div>
+</div>
+<div class='container'>
+  <h2 class="fadeup">Mendez</h2>
+  <div class='reveal'>
+    <div class="image-wrap">
+      <img src='https://scontent.fmnl25-3.fna.fbcdn.net/v/t1.15752-9/379661647_3552719245015774_943777393772995149_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeHjxDlXLP4qU9EV9Gih9IqBxsV6qTgfs7bGxXqpOB-ztl7prz4bPOQj-dkKCEYY2hptCOKs57mH7DRA2aKb67PG&_nc_ohc=AAZkRLYw4Y0AX9L2eF8&_nc_ht=scontent.fmnl25-3.fna&oh=03_AdSlLZH6stMkgDbWI3eKNGoTEU5nVGIYO_KgNkVi8vw5Yg&oe=6535D0BE'>
+    </div>
+  </div>
+</div>
+<div class='container'>
+  <h2 class="fadeup">Despabeladera</h2>
+  <div class='reveal'>
+    <div class="image-wrap">
+      <img src='https://scontent.fmnl25-2.fna.fbcdn.net/v/t1.15752-9/379657626_1493416638084195_3487615056357385922_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeEB70AL0Puobm9460CL2BSfcw8cLDuBMP5zDxwsO4Ew_tedy-4XH5vlUFgjKp2JODTPJKqOoCjUgIzjIdJkAoCg&_nc_ohc=aZfoCM5gS1cAX_wuxfL&_nc_ht=scontent.fmnl25-2.fna&oh=03_AdSteBKXuyrcBHu6s1LcPNSbaDGXbPZlf_SMk4401-dWqg&oe=6535FCC6'>
+    </div>
+  </div>
+</div>
+<div class="credit"><a href="https://www.facebook.com/Edgemendez17" target="_blank">Made by AksiSakalam</a></div>
+</body>
+</html>
